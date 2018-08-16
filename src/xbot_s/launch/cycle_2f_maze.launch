@@ -1,0 +1,39 @@
+<!-- 该程序用于赛迪机器人实验室２楼迷宫测试区循环从入口到出口运行，机器人开机后即自动启动，６０秒后机器人开始循环运行 -->
+<launch>
+	<!--  ************** Parameters configuration  ***************  -->
+	<param name="/use_sim_time" value="false"/>
+
+	<!--  ************** xbot bringup  ***************  -->
+	<include file="$(find xbot_bringup)/launch/xbot.launch" />
+
+	<!--  ************** Sick lidar  ***************  -->
+	<include file="$(find xbot_bringup)/launch/rplidar.launch" />
+
+	<!--  ************** map_server  ***************  -->
+	<arg name="map_file"       default="$(find xbot_s)/map/sdzn_2f_maze.yaml" />
+	<node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)">
+		<param name="frame_id"                      value="/map" />
+	</node>
+
+
+	<!--  ************** Amcl  ***************  -->
+	<include file="$(find xbot_s)/launch/include/amcl.launch.xml">
+		<arg name = "scan_topic"                        value="scan" />
+		<arg name = "use_map_topic"                     value="true" />
+		<arg name = "initial_pose_x"                    value="0.0" />
+		<arg name = "initial_pose_y"                    value="0.0" />
+		<arg name = "initial_pose_a"                    value="0.0" />
+	</include>
+
+	<!--  ************** Navigation  ***************  -->
+	<include file="$(find xbot_s)/launch/include/move_base.launch.xml"/>
+
+	<!--  ************** cycle  ***************  -->
+	<node name = "cycle" pkg = "xbot_s" type = "cycle_maze.py">
+		<param name = "/cycle/position_dict_path" value = "$(find xbot_s)/param/cycle_maze.yaml" />
+	</node>
+	<!--  ************** auto launch  ***************  -->
+	<node name = "autocycle" pkg = "xbot_s" type = "autocycle" />
+
+
+</launch>

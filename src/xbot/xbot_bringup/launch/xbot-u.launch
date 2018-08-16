@@ -1,0 +1,11 @@
+<launch>
+	<!-- Xbot -->
+	<include file="$(find xbot_bringup)/launch/xbot.launch">
+	</include>
+
+	
+
+	<!-- rosbridge_server -->
+	<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+
+</launch>

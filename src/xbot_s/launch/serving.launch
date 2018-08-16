@@ -1,0 +1,49 @@
+<launch>
+	<!--  ************** Parameters configuration  ***************  -->
+	<param name="/use_sim_time" value="false"/>
+
+	<!--  ************** xbot bringup  ***************  -->
+	<include file="$(find xbot_bringup)/launch/xbot.launch" />
+
+	<!--  ************** Sick lidar  ***************  -->
+	<include file="$(find xbot_bringup)/launch/rplidar.launch" />
+
+	<!--  ************** map_server  ***************  -->
+	<arg name="map_file"       default="$(find xbot_s)/map/sdzn_maze_tested.yaml" />
+	<node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)">
+		<param name="frame_id"                      value="/map" />
+	</node>
+
+
+	<!--  ************** Amcl  ***************  -->
+	<include file="$(find xbot_s)/launch/include/amcl.launch.xml">
+		<arg name = "scan_topic"                        value="scan" />
+		<arg name = "use_map_topic"                     value="true" />
+		<arg name = "initial_pose_x"                    value="0.0" />
+		<arg name = "initial_pose_y"                    value="0.0" />
+		<arg name = "initial_pose_a"                    value="0.0" />
+	</include>
+
+	<!--  ************** Navigation  ***************  -->
+	<include file="$(find xbot_s)/launch/include/move_base.launch.xml"/>
+
+	<!--  ************** rosbridge websocket  ***************  -->
+	<include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+
+
+	<!--  ************** xbot talker  ***************  -->
+	<node name="xbot_talker" pkg="xbot_talker" type="talker">
+		<param name="base_path" value="$(find xbot_talker)" />
+	</node>
+	<!--  ************** face recognition  ***************  -->
+	<node name = "face_recog" pkg = "xbot_s" type = "face_recog.py" />
+
+	<!--  ************** slam  ***************  -->
+	<node name = "slam" pkg = "xbot_s" type = "slam.py">
+		<param name = "/slam/position_dict_path" value = "$(find xbot_s)/param/position_dict.yaml" />
+	</node>
+	<!--  ************** auto launch  ***************  -->
+	<node name = "autolaunch" pkg = "xbot_s" type = "autolaunch" />
+
+
+</launch>

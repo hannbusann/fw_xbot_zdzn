@@ -1,0 +1,74 @@
+R15:
+	Line:
+	- &id003
+		abstract: this is iscas museum!
+		plan:
+			A: &id001 {audio: 1A.wav, interupt: 134, text: !!python/str "\u6A21\u578B\u6709\
+					\u8D39\u70B9\u6709\u661F\u70B9,\u89E3\u51B3\u65B9\u6CD5,max\u4E2D\u9009\u62E9\
+					\u975E\u56DB\u8FB9\u9762\u68C0\u67E5,\u8FD8\u6709\u53EF\u4EE5\u5BFC\u51FA\
+					BOJ\u7684\u65F6\u5019\u9009\u62E9\u5BFC\u51FA\u56DB\u8FB9\u5F62,\u770B\u770B\
+					\u6709\u9519\u8BEF\u6CA1\u3002", time: 307}
+			B: *id001
+			C: *id001
+		pose: !!python/tuple [345.0, 875.0, 0.0]
+	- abstract: this is iscas museum!
+		plan:
+			A: *id001
+			B: *id001
+			C: *id001
+		pose: !!python/tuple [365.0, 895.0, 0.1963495375]
+	- abstract: this is iscas museum!
+		plan:
+			A: *id001
+			B: *id001
+			C: *id001
+		pose: !!python/tuple [385.0, 915.0, 0.392699075]
+	- abstract: this is iscas museum!
+		plan:
+			A: *id001
+			B: *id001
+			C: *id001
+		pose: !!python/tuple [405.0, 935.0, 0.5890486125000001]
+	- abstract: this is iscas museum!
+		plan:
+			A: *id001
+			B: *id001
+			C: *id001
+		pose: !!python/tuple [425.0, 955.0, 0.78539815]
+	- abstract: this is iscas museum!
+		plan:
+			A: *id001
+			B: *id001
+			C: *id001
+		pose: !!python/tuple [445.0, 975.0, 0.9817476875]
+	- abstract: this is iscas museum!
+		plan:
+			A: *id001
+			B: *id001
+			C: *id001
+		pose: !!python/tuple [465.0, 995.0, 1.1780972250000001]
+	- abstract: this is iscas museum!
+		plan:
+			A: *id001
+			B: *id001
+			C: *id001
+		pose: !!python/tuple [485.0, 1015.0, 1.3744467625]
+	- abstract: this is iscas museum!
+		plan:
+			A: *id001
+			B: *id001
+			C: *id001
+		pose: !!python/tuple [505.0, 1035.0, 1.5707963]
+	- &id002
+		abstract: this is iscas museum!
+		plan:
+			A: *id001
+			B: *id001
+			C: *id001
+		pose: !!python/tuple [525.0, 1055.0, 1.7671458375]
+	end: *id002
+	length: 10
+	start: *id003
+	time: 15
+R20: {}
+R30: {}
